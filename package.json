@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "JavaScript Boiler Plate by Mugund",
   "scripts": {
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "security-check": "nsp check",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch":"npm rum lint -- --watch",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
-  "author": "Cory House",
+  "author": "Mugund",
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
